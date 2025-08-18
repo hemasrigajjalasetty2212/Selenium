@@ -3,7 +3,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-//import org.openqa.selenium.firefox.FirefoxDriver;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Lab5 {
@@ -18,31 +18,31 @@ public class Lab5 {
 		String actualTitle = driver.getTitle();
 		System.out.println("The title: "+actualTitle);
 		
-		if (actualTitle.equals("YourStore")) {
+		if (actualTitle.equals("Your Store")) {
 			System.out.println("The Page Title verification passed.");
 		}else {
 			System.out.println("The page Title verification not passed.");
 		}
 		
+		//click on my account
 		driver.findElement(By.xpath("//*[@id=\"top-links\"]/ul/li[2]/a")).click();
+		
+		//click on Register
 		driver.findElement(By.linkText("Register")).click();
 		
-		driver.findElement(By.id("input-firstname")).sendKeys("asdfgh");
-
-		driver.findElement(By.id("input-lastname")).sendKeys("gfdsa");
+		String actualTitle1 = driver.getTitle();
+		System.out.println("The title: "+actualTitle1);
 		
-		driver.findElement(By.id("input-email")).sendKeys("asdfgh6666@gmail.com");
-
-		driver.findElement(By.id("input-telephone")).sendKeys("987654321");
-
-		driver.findElement(By.id("input-password")).sendKeys("asdfgh66");
-
-		driver.findElement(By.xpath("//*[@id=\"input-confirm\"]")).sendKeys("asdfgh66");
+		Thread.sleep(3000);
+		if (actualTitle1.equals("Register Account")) {
+			System.out.println("The Page Title verification passed.");
+		}else {
+			System.out.println("The page Title verification not passed.");
+		}
 		
-		driver.findElement(By.name("agree")).click();
+		//click on continue
 		driver.findElement(By.xpath("//*[@id=\"content\"]/form/div/div/input[2]")).click();
-
-        
+		
         WebElement warningMsg = driver.findElement(By.xpath("//*[@id=\"account-register\"]/div[1]"));
         String warningMsgText = warningMsg.getText();
         if(warningMsgText.contains("Warning: You must agree to the Privacy Policy!")) {
@@ -50,6 +50,8 @@ public class Lab5 {
         }else {
         	System.out.println("warning msg not verified");
         }
+        
+        
 	}
 
 }

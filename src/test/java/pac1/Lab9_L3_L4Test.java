@@ -5,25 +5,34 @@ import org.testng.annotations.Test;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 
-public class Lab8_L3_L4TestNg {
+public class Lab9_L3_L4Test {
 	WebDriver driver;
+	@Parameters("browser")
   @BeforeClass
-  public void beforeClass() {
-	  WebDriverManager.chromedriver().setup();
-		driver = new ChromeDriver();
+  public void beforeClass(String browser) {
+	  if(browser.equalsIgnoreCase("chrome")) {
+		  WebDriverManager.chromedriver().setup();
+		  driver = new ChromeDriver();
+	  }else if (browser.equalsIgnoreCase("edge")) {
+		  WebDriverManager.edgedriver().setup();
+		  driver = new EdgeDriver();	  
+	  }
+	
+	  driver.get("https://tutorialsninja.com/demo/index.php?");
 		
-		driver.get("https://tutorialsninja.com/demo/index.php?");
-		System.out.println("Before Method");
   }
 
+  
   @Test(priority=1)
   public void testPageTitle() {
 	  String title = driver.getTitle();   //Lab 4
@@ -35,8 +44,7 @@ public class Lab8_L3_L4TestNg {
   
   @Test(priority=2)
   public void testMacSection() throws InterruptedException {
-	  
-	 driver.findElement(By.linkText("Desktops")).click();
+	  driver.findElement(By.linkText("Desktops")).click();
 		driver.findElement(By.linkText("Mac (1)")).click();   //Mac (1)
 		
 		WebElement mac = driver.findElement(By.xpath("//*[@id=\"column-left\"]/div[1]/a[3]"));
@@ -54,10 +62,8 @@ public class Lab8_L3_L4TestNg {
 	  
   }
   
-  
   @Test(priority=3)
   public void testSearchFunctionality() throws InterruptedException {
-	  
 	  driver.findElement(By.name("search")).sendKeys("Mobile");
 		driver.findElement(By.xpath("//*[@id=\"search\"]/span/button")).click();   //search button
 		

@@ -27,10 +27,14 @@ public class TC0012_testNG {
 		Thread.sleep(3000);
 		//WebElement username=driver.findElement(By.name("username"));
 		//username.sendKeys("Admin");
-		driver.findElement(By.name("username")).sendKeys(username);
+		login_pageObj obj = new login_pageObj(driver);
+		obj.enterusername(username);
+		obj.enterpassword(password);
+		obj.clickonlogin();
+		/*driver.findElement(By.name("username")).sendKeys(username);
 		driver.findElement(By.name("password")).sendKeys(password);
 		driver.findElement(By.xpath("//button[@type='submit']")).click();
-  }
+  */}
   @BeforeMethod
   public void beforeMethod() {
 	  WebDriverManager.chromedriver().setup();

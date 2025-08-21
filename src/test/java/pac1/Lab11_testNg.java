@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 
-public class Lab8_L3_L4TestNg {
+public class Lab11_testNg {
 	WebDriver driver;
   @BeforeClass
   public void beforeClass() {
@@ -36,8 +36,11 @@ public class Lab8_L3_L4TestNg {
   @Test(priority=2)
   public void testMacSection() throws InterruptedException {
 	  
-	 driver.findElement(By.linkText("Desktops")).click();
-		driver.findElement(By.linkText("Mac (1)")).click();   //Mac (1)
+	  Lab11_PO obj1 = new Lab11_PO(driver);
+	  obj1.clickdesktop();
+	  obj1.clickmac();
+	 /* driver.findElement(By.linkText("Desktops")).click();
+		driver.findElement(By.linkText("Mac (1)")).click();   //Mac (1)*/
 		
 		WebElement mac = driver.findElement(By.xpath("//*[@id=\"column-left\"]/div[1]/a[3]"));
 		String macText = mac.getText();
@@ -49,7 +52,8 @@ public class Lab8_L3_L4TestNg {
 		Select sle = new Select (sort);
 		sle.selectByIndex(1);
 		
-		driver.findElement(By.xpath("//*[@id=\"content\"]/div[2]/div/div/div[2]/div[2]/button[1]")).click(); //add to cart
+		obj1.clickaddcart();
+		//driver.findElement(By.xpath("//*[@id=\"content\"]/div[2]/div/div/div[2]/div[2]/button[1]")).click(); //add to cart
 	
 	  
   }
@@ -57,17 +61,24 @@ public class Lab8_L3_L4TestNg {
   
   @Test(priority=3)
   public void testSearchFunctionality() throws InterruptedException {
+	  Lab11_PO obj2 = new Lab11_PO(driver);
+	  obj2.entersearchitem("Mobile");
+	  obj2.clicksearchbutton();
 	  
-	  driver.findElement(By.name("search")).sendKeys("Mobile");
-		driver.findElement(By.xpath("//*[@id=\"search\"]/span/button")).click();   //search button
+	  //driver.findElement(By.name("search")).sendKeys("Mobile");
+		//driver.findElement(By.xpath("//*[@id=\"search\"]/span/button")).click();   //search button
 		
 		Thread.sleep(3000);
-		driver.findElement(By.id("input-search")).clear();  //clear search 
+		obj2.clearsearch();
+		//driver.findElement(By.id("input-search")).clear();  //clear search 
 		
 		Thread.sleep(2000);
-		driver.findElement(By.id("input-search")).sendKeys("Monitors");
-		driver.findElement(By.name("description")).click();  // click on search in product descriptions
-		driver.findElement(By.id("button-search")).click();  // click on search button
+		obj2.enteranotheritem("Monitors");
+		obj2.clicksearchdescrip();
+		obj2.clicksearchbutton();
+		//driver.findElement(By.id("input-search")).sendKeys("Monitors");
+		//driver.findElement(By.name("description")).click();  // click on search in product descriptions
+		//driver.findElement(By.id("button-search")).click();  // click on search button
 		
 	  
   }

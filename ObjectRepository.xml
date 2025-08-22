@@ -1,0 +1,11 @@
+<users>
+<user>
+<desktopstag>Desktops</desktopstag>
+<mactag>Mac (1)</mactag>
+<addcarttag>//*[@id="content"]/div[2]/div/div/div[2]/div[2]/button[1]</addcarttag>
+<searchitemtag>search</searchitemtag>
+<buttontag>//*[@id=\"search\"]/span/button</buttontag>
+<searchitem2tag>input-search</searchitem2tag>
+<descriptag>description</descriptag>
+</user>
+</users>

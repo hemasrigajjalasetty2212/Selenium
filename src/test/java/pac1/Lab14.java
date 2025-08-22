@@ -9,7 +9,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Lab14 {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
 
 		WebDriverManager.chromedriver().setup();
@@ -30,7 +30,15 @@ public class Lab14 {
 		//click on Register
 		driver.findElement(By.linkText("Register")).click();
 		
-		
+		//enter details
+		Thread.sleep(3000);
+		driver.findElement(By.id("input-firstname")).sendKeys("firstname");
+		driver.findElement(By.id("input-lastname")).sendKeys("lastname");
+		driver.findElement(By.id("input-email")).sendKeys("email123@gmail.com");
+		driver.findElement(By.id("input-telephone")).sendKeys("123456789");
+		driver.findElement(By.id("input-password")).sendKeys("password");
+		driver.findElement(By.id("input-confirm")).sendKeys("password");
+				
 		
 		
 		//Newsletters
